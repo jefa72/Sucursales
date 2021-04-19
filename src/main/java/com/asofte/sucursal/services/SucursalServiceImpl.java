@@ -39,19 +39,19 @@ public class SucursalServiceImpl implements SucursalService {
     }
 
     @Override
-    public Sucursal getSucursal(Double latitud, Double longitud) {
+    public Sucursal getSucursal(Double longitud, Double latitud) {
         List<Sucursal> sucursalList = new ArrayList<>();
         Iterable<Sucursal> iterableSucursales = sucursalRepository.findAll();
         iterableSucursales.forEach(s -> sucursalList.add(s));
 
         Optional<Pair<Double, Sucursal>> minSucursal = sucursalList.stream().map(s -> {
-            return new Pair<Double, Sucursal>(distanceToSucursal(latitud, longitud, s.getLatitud(), s.getLongitud()), s);
+            return new Pair<Double, Sucursal>(distanceToSucursal(longitud, latitud, s.getLongitud(), s.getLatitud()), s);
         }).peek(System.out::println).min((o1, o2) -> {return Double.compare(o1.getValue0(), o2.getValue0());});
 
         return minSucursal.orElse(null).getValue1();
     }
 
-    private Double distanceToSucursal(Double latitud1, Double longitud1, Double latitud2, Double longitud2) {
+    private Double distanceToSucursal(Double longitud1, Double latitud1, Double longitud2, Double latitud2) {
         return Math.sqrt(Math.pow(latitud2 - latitud1, 2) + Math.pow(longitud2 - longitud1, 2));
     }
 

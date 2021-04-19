@@ -9,6 +9,6 @@ public interface SucursalService {
 
     public Sucursal saveSucursal(Sucursal sucursal);
     public List<Sucursal> getSucursales();
-    public Sucursal getSucursal(Double latitud, Double longitud);
+    public Sucursal getSucursal(Double longitud, Double latitud);
 
 }

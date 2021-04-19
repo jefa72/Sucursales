@@ -66,7 +66,7 @@ class SucursalServiceImplTest {
 
         when(sucursalRepository.findAll()).thenReturn(sucursalIterable);
 
-        Sucursal sucursal = sucursalService.getSucursal(0.1, 3.1);
+        Sucursal sucursal = sucursalService.getSucursal(3.1, 0.1);
 
         assertEquals(sucursal2.getDireccion(), sucursal.getDireccion());
 

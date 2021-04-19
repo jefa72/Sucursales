@@ -29,9 +29,9 @@ public class SucursalController {
     }
 
     @GetMapping("/ubic")
-    SucursalResource getSucursal(@RequestParam("latitud") Double latitud, @RequestParam("longitud") Double longitud) {
+    SucursalResource getSucursal(@RequestParam("longitud") Double longitud, @RequestParam("latitud") Double latitud) {
 
-        return sucursalMapper.sucursalToSucursalResource(sucursalService.getSucursal(latitud, longitud));
+        return sucursalMapper.sucursalToSucursalResource(sucursalService.getSucursal(longitud, latitud));
 
     }
 
