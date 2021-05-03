@@ -12,6 +12,9 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sucursal {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -20,14 +23,6 @@ public class Sucursal {
     protected Double latitud;
     protected Double longitud;
 
-    public Sucursal(){
 
-    }
-
-    public Sucursal(String direccion, Double longitud, Double latitud) {
-        this.direccion = direccion;
-        this.longitud = longitud;
-        this.latitud = latitud;
-    }
 
 }

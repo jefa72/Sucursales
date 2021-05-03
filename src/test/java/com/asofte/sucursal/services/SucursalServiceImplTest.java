@@ -29,23 +29,21 @@ class SucursalServiceImplTest {
 
     @Test
     void saveSucursal() {
-        SucursalResource sucursalResource = new SucursalResource("address XX", 4.5, 5.6);
-        Sucursal sucursal = new Sucursal("address XX", 4.5, 5.6);
-        when(sucursalRepository.findByDireccion(sucursalResource.getDireccion())).thenReturn(null);
-        when(sucursalRepository.save(any())).thenReturn(sucursal);
+        Sucursal sucursal = new Sucursal(1L, "address XX", 4.5, 5.6);
+        when(sucursalRepository.findByDireccion(sucursal.getDireccion())).thenReturn(null);
+        when(sucursalRepository.save(sucursal)).thenReturn(sucursal);
 
         Sucursal savedSucursal = sucursalService.saveSucursal(sucursal);
 
         assertNotNull(savedSucursal);
-        assertEquals(sucursalResource.getDireccion(), savedSucursal.getDireccion());
+        assertEquals(sucursal.getDireccion(), savedSucursal.getDireccion());
 
     }
 
     @Test
     void saveDuplicatedSucursal() {
-        SucursalResource sucursalResource = new SucursalResource("address XX", 4.5, 5.6);
-        Sucursal sucursal = new Sucursal("address XX", 4.5, 5.6);
-        when(sucursalRepository.findByDireccion(sucursalResource.getDireccion())).thenReturn(sucursal);
+        Sucursal sucursal = new Sucursal(1L, "address XX", 4.5, 5.6);
+        when(sucursalRepository.findByDireccion(sucursal.getDireccion())).thenReturn(sucursal);
 
         assertThrows(DuplicatedSucursalException.class, ()-> sucursalService.saveSucursal(sucursal));
 
@@ -53,9 +51,9 @@ class SucursalServiceImplTest {
 
     @Test
     void getSucursal() {
-        Sucursal sucursal1 = new Sucursal("address 1", 0.0, 0.0);
-        Sucursal sucursal2 = new Sucursal("address 2", 3.0, 0.0);
-        Sucursal sucursal3 = new Sucursal("address 3", 3.0, 4.0);
+        Sucursal sucursal1 = new Sucursal(1L, "address 1", 0.0, 0.0);
+        Sucursal sucursal2 = new Sucursal(2L,"address 2", 0.0, 3.0);
+        Sucursal sucursal3 = new Sucursal(3L, "address 3", 4.0, 3.0);
 
         List<Sucursal> sucursalList = new ArrayList<>();
         sucursalList.add(sucursal1);
